@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>完整商店資料列表</title>
+
+  <!-- 載入 Bootstrap 5 CSS -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+    integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <div class="container mt-3">
+    <h2>完整商店資料列表</h2>
+    <p>以下為商店清單及聯絡資訊：</p>
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>商店編號</th>
+          <th>商店名稱</th>
+          <th>聯絡地址</th>
+          <th>聯絡電話</th>
+          <th>分機</th>
+          <th>行動電話</th>
+        </tr>
+      </thead>
+      <tbody id="shopTbody">
+        <!-- 動態填充資料 -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 載入 jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- 載入 Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+    integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    // 整個商店資料陣列
+    let shopData = [
+      {
+        "商店編號": "G000001",
+        "商店名稱": "特力屋股份有限公司羅東分公司",
+        "聯絡地址": "宜蘭縣羅東鎮民生路6號3樓",
+        "聯絡電話": "(03)9552000",
+        "分機": "666",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000002",
+        "商店名稱": "佳霖企業社",
+        "聯絡地址": "宜蘭縣宜蘭市中山路二段155號1樓",
+        "聯絡電話": "(03)9355000",
+        "分機": "",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000003",
+        "商店名稱": "東明電子股份有限公司",
+        "聯絡地址": "宜蘭縣羅東鎮復興路二段132號1樓",
+        "聯絡電話": "(03)9543700",
+        "分機": "",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000004",
+        "商店名稱": "宜蘭縣羅東鎮合家福企業社",
+        "聯絡地址": "宜蘭縣羅東鎮中山路三段211號",
+        "聯絡電話": "(03)9551337",
+        "分機": "",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000005",
+        "商店名稱": "宜蘭縣羅東鎮中山電器行",
+        "聯絡地址": "宜蘭縣羅東鎮中山路三段204號",
+        "聯絡電話": "(03)9563590",
+        "分機": "",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000006",
+        "商店名稱": "陳家瑞企業社",
+        "聯絡地址": "宜蘭縣羅東鎮光榮路101號",
+        "聯絡電話": "(03)9562342",
+        "分機": "",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000007",
+        "商店名稱": "大同電子有限公司羅東分公司",
+        "聯絡地址": "宜蘭縣羅東鎮中正北路一段5號",
+        "聯絡電話": "(03)9542765",
+        "分機": "",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000008",
+        "商店名稱": "寶島電器股份有限公司羅東分公司",
+        "聯絡地址": "宜蘭縣羅東鎮民權路20號",
+        "聯絡電話": "(03)9565257",
+        "分機": "",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000009",
+        "商店名稱": "大佳家電行",
+        "聯絡地址": "宜蘭縣羅東鎮民生路二段43號",
+        "聯絡電話": "(03)9561950",
+        "分機": "",
+        "行動電話": ""
+      },
+      {
+        "商店編號": "G000010",
+        "商店名稱": "聯合電器企業社",
+        "聯絡地址": "宜蘭縣羅東鎮興東路120號",
+        "聯絡電話": "(03)9566236",
+        "分機": "",
+        "行動電話": ""
+      }
+    ];
+
+    $(document).ready(function () {
+      let tbody = $('#shopTbody');
+      let rows = '';
+
+      $.each(shopData, function (index, shop) {
+        rows += `<tr>
+            <td>${shop["商店編號"]}</td>
+            <td>${shop["商店名稱"]}</td>
+            <td>${shop["聯絡地址"]}</td>
+            <td>${shop["聯絡電話"]}</td>
+            <td>${shop["分機"] || '-'}</td>
+            <td>${shop["行動電話"] || '-'}</td>
+          </tr>`;
+      });
+
+      tbody.append(rows);
+    });
+  </script>
+</body>
+
+</html>

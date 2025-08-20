@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>完整商店資料列表</title>
+
+  <!-- 載入 Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col">
+        <button id="myBtn" type="button" class="btn btn-primary btn-class" data-location="羅東鎮">羅東鎮</button>
+        <button type="button" class="btn btn-primary btn-class" data-location="宜蘭市">宜蘭市</button>
+        <button type="button" class="btn btn-success btn-class" data-location="五結鄉">五結鄉</button>
+        <button type="button" class="btn btn-danger btn-class" data-location="壯圍鄉">壯圍鄉</button>
+        <button type="button" class="btn btn-warning btn-class" data-location="礁溪鄉">礁溪鄉</button>
+        <button type="button" class="btn btn-primary btn-class" data-location="蘇澳鎮">蘇澳鎮</button>
+        <button type="button" class="btn btn-success btn-class" data-location="頭城鎮">頭城鎮</button>
+        <button type="button" class="btn btn-danger btn-class" data-location="冬山鄉">冬山鄉</button>
+        <button type="button" class="btn btn-warning btn-class" data-location="員山鄉">員山鄉</button>
+        <button type="button" class="btn btn-warning btn-class" data-location="三星鄉">三星鄉</button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container mt-5">
+    <form id="myForm" action="#">
+      <div class="row">
+        <div class="col">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="羅東鎮">
+            <label class="form-check-label" for="">羅東鎮</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="宜蘭市">
+            <label class="form-check-label" for="">宜蘭市</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="五結鄉">
+            <label class="form-check-label" for="">五結鄉</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="壯圍鄉">
+            <label class="form-check-label" for="">壯圍鄉</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="礁溪鄉">
+            <label class="form-check-label" for="">礁溪鄉</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="蘇澳鎮">
+            <label class="form-check-label" for="">蘇澳鎮</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="頭城鎮">
+            <label class="form-check-label" for="">頭城鎮</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="冬山鄉">
+            <label class="form-check-label" for="">冬山鄉</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="員山鄉">
+            <label class="form-check-label" for="">員山鄉</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input my-checkbox" name="my-check[]" type="checkbox" id="" value="三星鄉">
+            <label class="form-check-label" for="">三星鄉</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <hr>
+
+  <div class="container mt-3">
+    <h2>完整商店資料列表-宜蘭縣綠色商店名冊</h2>
+    <p>以下為商店清單及聯絡資訊：</p>
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>商店編號</th>
+          <th>商店名稱</th>
+          <th>聯絡地址</th>
+          <th>聯絡電話</th>
+          <th>分機</th>
+          <th>行動電話</th>
+        </tr>
+      </thead>
+      <tbody id="shopTbody">
+        <!-- 動態填充資料 -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 載入 jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- 載入 Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- 載入外部商店資料 JS 檔案 -->
+  <script src="./data/shopData1.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      let tbody = $('#shopTbody');
+
+      // 將資料放到表格
+      function showData(dataArr) {
+        let content = '';
+        $.each(dataArr, function (index, shop) {
+          content += `<tr>
+              <td>${shop["商店編號"]}</td>
+              <td>${shop["商店名稱"]}</td>
+              <td>${shop["聯絡地址"]}</td>
+              <td>${shop["聯絡電話"]}</td>
+              <td>${shop["分機"] || '-'}</td>
+              <td>${shop["行動電話"] || '-'}</td>
+            </tr>`;
+        });
+        tbody.html(content);
+      }
+
+      // 初始載入顯示全部資料
+      showData(shopData1);
+
+      // 按鈕點擊：單選區域篩選，並清空 checkbox
+      $('.btn-class').click(function (e) {
+        e.preventDefault();
+        $('.my-checkbox').prop('checked', false);
+
+        let selectedLocation = $(this).data('location');
+        let filtered = shopData1.filter(item => {
+          // 用「聯絡地址」或「商店名稱」判斷區域，這裡示範用「聯絡地址」包含區域字串
+          return item["聯絡地址"].indexOf(selectedLocation) !== -1;
+        });
+
+        showData(filtered);
+      });
+
+      // checkbox多選篩選
+      $('#myForm').submit(function (e) {
+        e.preventDefault();
+
+        let selectedLocations = $('.my-checkbox:checked').map(function () {
+          return this.value;
+        }).get();
+
+        if (selectedLocations.length === 0) {
+          tbody.html('');
+          return;
+        }
+
+        let filtered = shopData1.filter(item => {
+          return selectedLocations.some(loc => item["聯絡地址"].indexOf(loc) !== -1);
+        });
+
+        showData(filtered);
+      });
+    });
+  </script>
+
+</body>
+
+</html>
